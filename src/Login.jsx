@@ -38,7 +38,7 @@ function App() {
                 <input type="checkbox" />
                 Remember me
               </label>
-              <a href="#">Forgot password?</a>
+              <button type="button" className="forgot-btn" onClick={() => navigate("/forgot-password")}>Forgot password?</button>
             </div>
 
             <button type="submit">Login</button>
