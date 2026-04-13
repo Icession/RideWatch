@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+}
+
+.register-page {
+  min-height: 100vh;
+  background-color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  font-family: "Courier New", Courier, monospace;
+}
+
+
+.register-container {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(135deg, #8b0000 0%, #5c0000 100%);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  padding: 40px 48px;
+  overflow: visible;
+}
+
+.left-panel {
+  flex: 1;
+  padding-right: 40px;
+}
+
+.tagline {
+  color: #ffffff;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.35;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.card {
+  width: 420px;
+  background: #ffffff;
+  padding: 36px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 12px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.35);
+  align-self: auto;
+}
+
+.card-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 28px;
+  font-family: "Georgia", serif;
+  color: #111;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field-group label {
+  font-size: 13px;
+  color: #333;
+  font-weight: 500;
+  text-align: left;
+}
+
+.field-group input {
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f0f0f0;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.field-group input::placeholder {
+  color: #999;
+}
+
+.field-group input:focus {
+  border-color: #8b0000;
+  background: #fff;
+}
+
+.btn-signup {
+  margin-top: 8px;
+  padding: 12px;
+  background: #d6d6d6;
+  color: #111;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-family: "Georgia", serif;
+}
+
+.btn-signup:hover {
+  background: #8b0000;
+  color: #fff;
+}
+
+.signin-prompt {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #555;
+}
+
+.signin-link {
+  color: #04a3f2;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signin-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 700px) {
+  .register-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .left-panel {
+    padding-right: 0;
+  }
+
+  .card {
+    width: 100%;
+    padding: 28px 24px;
+  }
+}
