@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Home.css";
+import About from "./About";
 
 function Navbar({ activePage, setActivePage }) {
   const links = ["Home", "About", "F.A.Q", "Account"];
@@ -105,15 +106,15 @@ function StubPage({ title, description }) {
 export default function Home() {
   const [activePage, setActivePage] = useState("Home");
 
-  const renderPage = () => {
-    switch (activePage) {
-      case "Home": return <HomePage />;
-      case "About": return <StubPage title="About" description="Learn more about RideWatch and our mission to keep every journey safe." />;
-      case "F.A.Q": return <StubPage title="F.A.Q" description="Have questions? Frequently asked questions coming soon." />;
-      case "Account": return <StubPage title="Account" description="Manage your RideWatch account and preferences here." />;
-      default: return <HomePage />;
-    }
-  };
+const renderPage = () => {
+  switch (activePage) {
+    case "Home": return <HomePage />;
+    case "About": return <About />;
+    case "F.A.Q": return <StubPage title="F.A.Q"/>;
+    case "Account": return <StubPage title="Account"/>;
+    default: return <HomePage />;
+  }
+};
 
   return (
     <div className="home-page">
