@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Home.css";
 import About from "./About";
+import Faq from "./Faq";
+import Account from "./Account";
 
 function Navbar({ activePage, setActivePage }) {
   const links = ["Home", "About", "F.A.Q", "Account"];
@@ -94,15 +96,6 @@ function HomePage() {
   );
 }
 
-function StubPage({ title, description }) {
-  return (
-    <main className="stub-main">
-      <h1 className="stub-title">{title}</h1>
-      <p className="stub-text">{description}</p>
-    </main>
-  );
-}
-
 export default function Home() {
   const [activePage, setActivePage] = useState("Home");
 
@@ -110,8 +103,8 @@ const renderPage = () => {
   switch (activePage) {
     case "Home": return <HomePage />;
     case "About": return <About />;
-    case "F.A.Q": return <StubPage title="F.A.Q"/>;
-    case "Account": return <StubPage title="Account"/>;
+    case "F.A.Q": return <Faq />;
+    case "Account": return <Account />;
     default: return <HomePage />;
   }
 };

@@ -121,9 +121,6 @@ function Login() {
                   <span className="checkmark"></span>
                   <span>Remember me</span>
                 </label>
-                <Link to="/forgot-password" className="forgot-link">
-                  Forgot password?
-                </Link>
               </div>
 
               <button type="submit" className="login-btn" disabled={isLoading}>

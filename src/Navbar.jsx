@@ -1,17 +1,24 @@
+import { Link, useLocation } from 'react-router-dom';
+
 const Navbar = () => {
+  const location = useLocation();
+  const hideNavbar = ['/', '/home', '/login', '/register'].includes(location.pathname);
+
+  if (hideNavbar) return null;
+
   return (
     <nav className="navbar">
       <div className="nav-container">
-        <h2 className="nav-logo">My App</h2>
+        <h2 className="nav-logo">Ride<strong>Watch</strong></h2>
         <ul className="nav-menu">
           <li className="nav-item">
-            <a href="/" className="nav-link">Home</a>
+            <Link to="/home" className="nav-link">Home</Link>
           </li>
           <li className="nav-item">
-            <a href="/login" className="nav-link">Login</a>
+            <Link to="/login" className="nav-link">Login</Link>
           </li>
           <li className="nav-item">
-            <a href="/register" className="nav-link">Register</a>
+            <Link to="/register" className="nav-link">Register</Link>
           </li>
         </ul>
       </div>

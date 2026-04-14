@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Account.css";
 
 const userData = {
@@ -13,6 +14,7 @@ const userData = {
 };
 
 export default function Account() {
+  const navigate = useNavigate();
   const [editMode, setEditMode] = useState(false);
   const [form, setForm] = useState({
     name: userData.name,
@@ -61,7 +63,7 @@ export default function Account() {
                 Save Changes
               </button>
             )}
-            <button className="btn-logout">Logout</button>
+            <button className="btn-logout" onClick={() => navigate('/login')}>Logout</button>
           </div>
         </div>
 
