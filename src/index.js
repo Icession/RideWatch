@@ -8,6 +8,7 @@ import Home from './Home';
 import Navbar from './Navbar';
 import Maps from './Maps';
 import About from './About';
+import Faq from './Faq';
 import Account from './Account';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -22,6 +23,7 @@ root.render(
         <Route path="/home" element={<Home />} />
         <Route path="/maps" element={<Maps />} />
         <Route path="/about" element={<About />} />
+        <Route path="/faq" element={<Faq />} />
         <Route path="/account" element={<Account />} />
       </Routes>
     </BrowserRouter>
