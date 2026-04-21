@@ -6,25 +6,15 @@ import Account from "./Account";
 import EmergencyAlert from "./EmergencyAlert";
 import EmergencyContacts from "./EmergencyContacts";
 import NotificationsDropdown from "./NotificationsDropdown";
+import logo from "./logoCrop2.png";
+import logo2 from "./logo.png";
 
 function Navbar({ activePage, setActivePage }) {
   const links = ["Home", "About", "F.A.Q", "Account"];
 
   return (
     <nav className="navbar">
-      <div className="navbar-brand">
-        <div className="brand-icon">
-          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="20" cy="20" r="18" stroke="#8b0000" strokeWidth="2.5" fill="none"/>
-            <circle cx="20" cy="20" r="12" stroke="#8b0000" strokeWidth="2" fill="none"/>
-            <circle cx="20" cy="20" r="6" stroke="#8b0000" strokeWidth="2" fill="none"/>
-            <path d="M14 26 C14 22 17 18 20 16 C23 18 26 22 26 26" stroke="#8b0000" strokeWidth="2" strokeLinecap="round" fill="none"/>
-            <circle cx="20" cy="27" r="2.5" fill="#8b0000"/>
-          </svg>
-        </div>
-        <span className="brand-text">Ride<strong>Watch</strong></span>
-      </div>
-
+      <img src={logo} alt="RideWatch Logo" style={{ width: "150px", height: "auto" }} />
       <ul className="navbar-links">
         {links.map((link) => (
           <li key={link}>
@@ -55,7 +45,6 @@ function HomePage() {
           <p className="home-subtext">
             Safe rides begin with one step. Let's get you started.
           </p>
-
           <div className="search-section">
             <p className="search-label">Decided on where you're headed?</p>
             <div className="search-row">
@@ -77,24 +66,11 @@ function HomePage() {
             <button className="btn-routes">Routes</button>
           </div>
         </div>
-
         <div className="home-right">
-          <div className="hero-card">
-            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="hero-svg">
-              <circle cx="100" cy="100" r="90" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5"/>
-              <circle cx="100" cy="100" r="65" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5"/>
-              <circle cx="100" cy="100" r="40" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5"/>
-              <circle cx="100" cy="100" r="18" stroke="rgba(255,255,255,0.3)" strokeWidth="1.5"/>
-              <rect x="68" y="72" width="64" height="42" rx="6" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.6)" strokeWidth="2"/>
-              <rect x="73" y="77" width="24" height="14" rx="2" fill="rgba(255,255,255,0.4)"/>
-              <rect x="103" y="77" width="24" height="14" rx="2" fill="rgba(255,255,255,0.4)"/>
-              <circle cx="80" cy="118" r="6" fill="rgba(255,255,255,0.5)" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5"/>
-              <circle cx="120" cy="118" r="6" fill="rgba(255,255,255,0.5)" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5"/>
-              <circle cx="100" cy="138" r="12" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5"/>
-              <path d="M100 132 V138 L104 141" stroke="rgba(255,255,255,0.9)" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-          </div>
-        </div>
+  <div className="hero-card">
+    <img src={logo2} alt="Home Logo" style={{ width: "100%", maxWidth: "400px", height: "auto" }} />
+  </div>
+  </div>
       </div>
     </main>
   );

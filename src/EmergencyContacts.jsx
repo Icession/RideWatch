@@ -85,7 +85,7 @@ export default function EmergencyContacts({ onBack }) {
               <span key={i} className={`ec-dot ${i < contacts.length ? "ec-dot--filled" : ""}`} />
             ))}
           </div>
-          <span className="ec-limit-text">
+          <span className="ec-limit-text">  
             {contacts.length} / {MAX_CONTACTS} contacts added
           </span>
         </div>

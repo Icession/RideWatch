@@ -2,12 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import "./EmergencyAlert.css";
 
-const EMAILJS_SERVICE_ID = "service_XXXXXXX";
-const EMAILJS_TEMPLATE_ID = "template_XXXXXXX";
-const EMAILJS_PUBLIC_KEY = "public_XXXXXXX";
+const EMAILJS_SERVICE_ID = "service_ddaz9is";
+const EMAILJS_TEMPLATE_ID = "template_kw2qbqf";
+const EMAILJS_PUBLIC_KEY = "XhiZrS1XmZ2UdD8EX";
 
 const EMERGENCY_CONTACTS = [
-  { name: "Mom", email: "emergencycontact@gmail.com" },
+  { name: "Mom", email: "{{to_email}}" },
 ];
 
 const USER_NAME = "John Doe";
@@ -58,47 +58,59 @@ export default function EmergencyAlert() {
   };
 
   const sendAlert = async () => {
-    setPhase("sending");
+  setPhase("sending");
 
-    const mapsLink = location
-      ? `https://maps.google.com/?q=${location.lat},${location.lng}`
-      : "Location unavailable";
+  const time = new Date().toLocaleString("en-PH", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
 
-    const locationText = location
-      ? `${location.lat.toFixed(5)}, ${location.lng.toFixed(5)}`
-      : "Could not retrieve location";
-
-    const time = new Date().toLocaleString("en-PH", {
-      dateStyle: "medium",
-      timeStyle: "short",
+  const getLocation = () =>
+    new Promise((resolve) => {
+      if (!navigator.geolocation) return resolve(null);
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+        () => resolve(null),
+        { timeout: 8000 }
+      );
     });
 
-    try {
-      await Promise.all(
-        EMERGENCY_CONTACTS.map((contact) =>
-          emailjs.send(
-            EMAILJS_SERVICE_ID,
-            EMAILJS_TEMPLATE_ID,
-            {
-              user_name: USER_NAME,
-              to_email: contact.email,
-              location: locationText,
-              maps_link: mapsLink,
-              time,
-            },
-            EMAILJS_PUBLIC_KEY
-          )
+  const freshLocation = await getLocation();
+
+  const mapsLink = freshLocation
+    ? `https://maps.google.com/?q=${freshLocation.lat},${freshLocation.lng}`
+    : "Location unavailable";
+
+  const locationText = freshLocation
+    ? `${freshLocation.lat.toFixed(5)}, ${freshLocation.lng.toFixed(5)}`
+    : "Could not retrieve location";
+
+  try {
+    await Promise.all(
+      EMERGENCY_CONTACTS.map((contact) =>
+        emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            user_name: USER_NAME,
+            to_email: contact.email,
+            location: locationText,
+            maps_link: mapsLink,
+            time,
+          },
+          EMAILJS_PUBLIC_KEY
         )
-      );
-      setPhase("sent");
-      setTimeout(() => setPhase("idle"), 6000);
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      setErrorMsg("Failed to send alert. Check your EmailJS config.");
-      setPhase("error");
-      setTimeout(() => setPhase("idle"), 5000);
-    }
-  };
+      )
+    );
+    setPhase("sent");
+    setTimeout(() => setPhase("idle"), 6000);
+  } catch (err) {
+    console.error("EmailJS error:", err);
+    setErrorMsg("Failed to send alert. Check your EmailJS config.");
+    setPhase("error");
+    setTimeout(() => setPhase("idle"), 5000);
+  }
+};
 
   return (
     <>
