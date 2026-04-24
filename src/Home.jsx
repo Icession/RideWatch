@@ -1,11 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import About from "./About";
 import Faq from "./Faq";
 import Account from "./Account";
 import Maps from "./Maps";
 import Sampledata from "./RouteSampledata";
+import Navbar from "./Navbar";
+import EmergencyAlert from "./EmergencyAlert";
+import EmergencyContacts from "./EmergencyContacts";
+import { useNavigate } from "react-router-dom";
+
 
 function HomePage() {
   const [query, setQuery] = useState("");
@@ -113,20 +117,21 @@ function HomePage() {
 export default function Home() {
   const [activePage, setActivePage] = useState("Home");
 
-const renderPage = () => {
-  switch (activePage) {
-    case "Home": return <HomePage />;
-    case "About": return <About />;
-    case "F.A.Q": return <Faq />;
-    case "Account": return <Account />;
-    case "Maps": return <Maps />;
-    default: return <HomePage />;
-  }
-};
+  const renderPage = () => {
+    switch (activePage) {
+      case "Home":               return <HomePage />;
+      case "About":              return <About />;
+      case "F.A.Q":             return <Faq />;
+      case "Account":            return <Account setActivePage={setActivePage} />;
+      case "EmergencyContacts":  return <EmergencyContacts onBack={() => setActivePage("Account")} />;
+      default:                   return <HomePage />;
+    }
+  };
 
   return (
     <div className="home-page">
       {renderPage()}
+      <EmergencyAlert />
     </div>
   );
 }
