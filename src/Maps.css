@@ -1,36 +1,99 @@
-/* Maps.css - Styling for react-leaflet map component */
+.maps-page {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 69px);
+  overflow: hidden;
+  background: #f6f6f6;
+}
 
-.map-container {
-    width: 100%;
-    height: 100vh;
-    position: relative;
+.maps-leaflet {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 }
 
 .leaflet-container {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-.map-controls {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 400;
-    background: white;
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.leaflet-top.leaflet-right {
+  top: 18px;
+  right: 18px;
 }
 
-.map-marker {
-    cursor: pointer;
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: 0 10px 24px rgba(37, 9, 2, 0.16) !important;
+  border-radius: 14px !important;
+  overflow: hidden;
 }
 
-.map-popup {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 14px;
+.leaflet-control-zoom a {
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  color: #640d14 !important;
+  font-weight: 800;
 }
 
-.map-popup-content {
-    padding: 8px 12px;
+.custom-route-marker {
+  background: transparent;
+  border: none;
+}
+
+.route-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+}
+
+.route-marker-label {
+  position: relative;
+  padding: 7px 14px;
+  border-radius: 18px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  white-space: nowrap;
+}
+
+.route-marker-label::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  rotate: 45deg;
+  background: inherit;
+}
+
+.route-marker-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-top: 10px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.route-marker-start .route-marker-label {
+  background: #5aa9ff;
+}
+
+.route-marker-start .route-marker-dot {
+  background: #5aa9ff;
+}
+
+.route-marker-end .route-marker-label {
+  background: #f06b6b;
+}
+
+.route-marker-end .route-marker-dot {
+  background: #f06b6b;
 }
