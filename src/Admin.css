@@ -1,0 +1,379 @@
+.admin-page {
+  background: #120000;
+  min-height: 100vh;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.admin-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 32px;
+}
+
+.admin-title {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 48px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.admin-section {
+  margin-bottom: 48px;
+}
+
+.admin-section-title {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Stats Grid */
+.admin-stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+  align-items: flex-start;
+}
+
+.admin-stat-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px 24px;
+  min-width: 140px;
+}
+
+.admin-stat-label {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-family: "Courier New", Courier, monospace;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admin-stat-value {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Controls */
+.admin-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 640px) {
+  .admin-controls {
+    flex-direction: row;
+    gap: 12px;
+  }
+}
+
+.admin-search-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+  padding: 9px 14px;
+  min-width: 260px;
+  transition: border-color 0.2s;
+}
+
+.admin-search-wrapper:focus-within {
+  border-color: rgba(220, 60, 60, 0.85);
+}
+
+.admin-search-icon {
+  position: static;
+  transform: none;
+  color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.admin-search-input {
+  width: 100%;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  font-family: "Courier New", Courier, monospace;
+  padding: 0;
+  border: none;
+  outline: none;
+  flex: 1;
+}
+
+.admin-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.admin-select {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 13px;
+  font-family: "Courier New", Courier, monospace;
+  padding: 9px 32px 9px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  outline: none;
+  appearance: none;
+  min-width: 130px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.admin-select:hover,
+.admin-select:focus {
+  border-color: rgba(220, 60, 60, 0.85);
+}
+
+/* Table Wrapper */
+.admin-table-wrapper {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 13px;
+}
+
+.admin-table-header {
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.admin-table-header th {
+  padding: 12px 16px;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 400;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.admin-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.admin-table-row-alt {
+  background: transparent;
+}
+
+.admin-table td {
+  padding: 12px 16px;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.admin-table-email,
+.admin-table-date,
+.admin-table-driver {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+}
+
+.admin-table-id,
+.admin-table-count,
+.admin-table-fare {
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.admin-table-role {
+  font-weight: 400;
+}
+
+
+/* Badge */
+.admin-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  background: transparent;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 400;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Actions */
+.admin-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-action-btn {
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.admin-action-btn svg {
+  display: flex;
+  align-items: center;
+}
+
+.admin-action-btn:hover:not(:disabled) {
+  background: rgba(139, 0, 0, 0.4);
+  color: #ffffff;
+  border-color: rgba(139, 0, 0, 0.6);
+}
+
+.admin-action-btn:active:not(:disabled) {
+  background: rgba(139, 0, 0, 0.5);
+}
+
+/* Pagination */
+.admin-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.02);
+  margin-top: 0;
+}
+
+.admin-pagination-info {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+}
+
+.admin-pagination-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-pagination-btn {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Courier New", Courier, monospace;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.admin-pagination-btn svg {
+  display: flex;
+  align-items: center;
+}
+
+.admin-pagination-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-pagination-btn:disabled {
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.2);
+  cursor: not-allowed;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Empty State */
+.admin-empty-state {
+  padding: 40px 16px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 13px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .admin-container {
+    padding: 32px 20px;
+  }
+
+  .admin-title {
+    margin-bottom: 32px;
+  }
+
+  .admin-section {
+    margin-bottom: 32px;
+  }
+
+  .admin-stats-grid {
+    gap: 12px;
+  }
+
+  .admin-stat-card {
+    padding: 16px 20px;
+    min-width: auto;
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .admin-table {
+    font-size: 12px;
+  }
+
+  .admin-table td,
+  .admin-table-header th {
+    padding: 10px 12px;
+  }
+
+  .admin-actions {
+    gap: 6px;
+  }
+
+  .admin-action-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .admin-pagination {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+}

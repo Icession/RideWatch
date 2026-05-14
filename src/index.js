@@ -10,6 +10,7 @@ import Maps from './Maps';
 import About from './About';
 import Faq from './Faq';
 import Account from './Account';
+import Admin from './Admin';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,6 +26,7 @@ root.render(
         <Route path="/about" element={<About />} />
         <Route path="/faq" element={<Faq />} />
         <Route path="/account" element={<Account />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
