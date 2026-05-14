@@ -28,6 +28,9 @@ const Navbar = () => {
         <li>
           <Link to="/account" className={`nav-link ${location.pathname === '/account' ? 'active' : ''}`}>Account</Link>
         </li>
+        <li>
+          <Link to="/admin" className={`nav-link ${location.pathname === '/admin' ? 'active' : ''}`}>Admin</Link>
+        </li>
       </ul>
     </nav>
   );

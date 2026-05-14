@@ -8,6 +8,7 @@ import Maps from './Maps';
 import About from './About';
 import Account from './Account';
 import FAQ from './Faq';
+import AdminDashboard from './AdminDashboard';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/account" element={<Account />} />
         <Route path="/Faq" element={<FAQ />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </>
   );
