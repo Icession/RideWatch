@@ -18,7 +18,7 @@ function Login() {
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
-  };
+  };  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
