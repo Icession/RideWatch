@@ -8,6 +8,14 @@ function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("stats");
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [createFormData, setCreateFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  });
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     fetchDashboardStats();
@@ -42,10 +50,51 @@ function AdminDashboard() {
         params: { isActive: newStatus }
       });
       fetchUsers();
+      setSuccessMessage("User status updated!");
+      setTimeout(() => setSuccessMessage(""), 3000);
     } catch (err) {
       setError("Failed to update user status");
       console.error(err);
     }
+  };
+
+  const handleCreateUser = async (e) => {
+    e.preventDefault();
+    try {
+      await myAxios.post("/admin/users", createFormData);
+      setSuccessMessage("User created successfully!");
+      setCreateFormData({ firstName: "", lastName: "", email: "", password: "" });
+      setShowCreateForm(false);
+      fetchUsers();
+      fetchDashboardStats();
+      setTimeout(() => setSuccessMessage(""), 3000);
+    } catch (err) {
+      setError(err.response?.data || "Failed to create user");
+      console.error(err);
+    }
+  };
+
+  const handleDeleteUser = async (userId) => {
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      try {
+        await myAxios.delete(`/admin/users/${userId}`);
+        setSuccessMessage("User deleted successfully!");
+        fetchUsers();
+        fetchDashboardStats();
+        setTimeout(() => setSuccessMessage(""), 3000);
+      } catch (err) {
+        setError("Failed to delete user");
+        console.error(err);
+      }
+    }
+  };
+
+  const handleCreateFormChange = (e) => {
+    const { name, value } = e.target;
+    setCreateFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   if (error) {
@@ -55,6 +104,12 @@ function AdminDashboard() {
   return (
     <div className="admin-dashboard">
       <h1>Admin Dashboard</h1>
+
+      {successMessage && (
+        <div className="admin-success">
+          {successMessage}
+        </div>
+      )}
 
       <div className="admin-tabs">
         <button
@@ -109,14 +164,78 @@ function AdminDashboard() {
       )}
 
       {activeTab === "users" && (
-        <div className="users-table">
-          <h2>User Management</h2>
+        <div className="users-management">
+          <div className="users-header">
+            <h2>User Management</h2>
+            <button 
+              className="create-btn"
+              onClick={() => setShowCreateForm(!showCreateForm)}
+            >
+              {showCreateForm ? "Cancel" : "+ Add New User"}
+            </button>
+          </div>
+
+          {showCreateForm && (
+            <form className="create-user-form" onSubmit={handleCreateUser}>
+              <h3>Create New User</h3>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    name="firstName"
+                    value={createFormData.firstName}
+                    onChange={handleCreateFormChange}
+                    required
+                    placeholder="John"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    name="lastName"
+                    value={createFormData.lastName}
+                    onChange={handleCreateFormChange}
+                    required
+                    placeholder="Doe"
+                  />
+                </div>
+              </div>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={createFormData.email}
+                    onChange={handleCreateFormChange}
+                    required
+                    placeholder="john@example.com"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Password</label>
+                  <input
+                    type="password"
+                    name="password"
+                    value={createFormData.password}
+                    onChange={handleCreateFormChange}
+                    required
+                    placeholder="Enter password"
+                  />
+                </div>
+              </div>
+              <button type="submit" className="submit-btn">Create User</button>
+            </form>
+          )}
+
           {loading ? (
             <p>Loading users...</p>
           ) : users.length === 0 ? (
             <p>No users found</p>
           ) : (
-            <table>
+            <table className="users-table">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -126,7 +245,7 @@ function AdminDashboard() {
                   <th>Distance (km)</th>
                   <th>Safety Score</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -143,12 +262,18 @@ function AdminDashboard() {
                         {user.isActive ? "Active" : "Inactive"}
                       </span>
                     </td>
-                    <td>
+                    <td className="action-btns">
                       <button
                         className="toggle-btn"
                         onClick={() => handleUserStatusChange(user.id, !user.isActive)}
                       >
                         {user.isActive ? "Deactivate" : "Activate"}
+                      </button>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDeleteUser(user.id)}
+                      >
+                        Delete
                       </button>
                     </td>
                   </tr>

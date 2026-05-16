@@ -39,4 +39,24 @@ public class AdminController {
         adminService.updateUserStatus(id, isActive);
         return ResponseEntity.ok().body("User status updated successfully");
     }
+
+    @PostMapping("/users")
+    public ResponseEntity<?> createUser(@RequestBody com.ridewatch.dto.RegisterRequest request) {
+        try {
+            UserDTO newUser = adminService.createUser(request);
+            return ResponseEntity.status(201).body(newUser);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        try {
+            adminService.deleteUser(id);
+            return ResponseEntity.ok().body("User deleted successfully");
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 }

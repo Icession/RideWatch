@@ -73,6 +73,28 @@ public class AdminService {
         userRepository.save(user);
     }
 
+    public UserDTO createUser(com.ridewatch.dto.RegisterRequest request) {
+        if (userRepository.existsByEmail(request.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
+        com.ridewatch.model.User user = com.ridewatch.model.User.builder()
+                .name(request.getFirstName() + " " + request.getLastName())
+                .email(request.getEmail())
+                .password(request.getPassword())
+                .role(com.ridewatch.model.User.UserRole.USER)
+                .isActive(true)
+                .verified(false)
+                .build();
+        com.ridewatch.model.User savedUser = userRepository.save(user);
+        return convertToDTO(savedUser);
+    }
+
+    public void deleteUser(Long userId) {
+        var user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        userRepository.delete(user);
+    }
+
     private UserDTO convertToDTO(com.ridewatch.model.User user) {
         return UserDTO.builder()
                 .id(user.getId())
